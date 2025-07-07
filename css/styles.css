@@ -15,12 +15,18 @@ header {
 .cards-container {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
   width: 100%;
   max-width: 1000px;
   margin: 47px auto;
-  position: relative;
+}
+.card {
+  width: 100px;
+  height: 100px;
+  perspective: 1000px;
+  cursor: pointer;
+  margin: 10px;
 }
 .card img {
   width: 100px;
@@ -37,16 +43,25 @@ header {
   border: 1px solid #99cea8;
   backface-visibility: hidden;
   position: absolute;
-  transition: all 0.5s;
 }
+.front-face,
 .back-face {
+  transition: transform 0.6s;
+}
+
+.card .front-face {
+  transform: rotateY(0deg);
+  z-index: 2;
+}
+
+.card .back-face {
   transform: rotateY(180deg);
 }
 
-.card:hover .back-face {
-  transform: rotateY(0deg);
+.card.flipped .front-face {
+  transform: rotateY(-180deg);
 }
 
-.card:hover .front-face {
-  transform: rotateY(-180deg);
+.card.flipped .back-face {
+  transform: rotateY(0deg);
 }
