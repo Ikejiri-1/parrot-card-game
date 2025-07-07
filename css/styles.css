@@ -15,11 +15,13 @@ header {
 .cards-container {
   display: flex;
   flex-wrap: wrap;
+  gap: 24px;
   justify-content: center;
   align-items: center;
   width: 100%;
-  max-width: 1000px;
+  max-width: 900px;
   margin: 47px auto;
+  height: 320px;
 }
 .card {
   width: 100px;
