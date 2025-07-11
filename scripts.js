@@ -40,7 +40,7 @@ function createCards() {
 }
 
 function askforCards() {
-  const numberOfCards = prompt("Com quantas cartas você quer jogar? 4 a 14!");
+  var numberOfCards = prompt("Com quantas cartas você quer jogar? 4 a 14!");
   cardNumber = Number(numberOfCards);
   if (cardNumber >= 4 && cardNumber <= 14 && cardNumber % 2 === 0) {
     for (let i = 0; i < cardNumber; i++) {
@@ -66,6 +66,7 @@ function askforCards() {
 }
 askforCards();
 
+let totalScore = 0;
 let rounds = 0;
 let firstClick = null;
 let secondClick = null;
@@ -86,6 +87,10 @@ function flipCard(clickedCard) {
 
     if (firstClick.innerHTML === secondClick.innerHTML) {
       keepCards();
+      totalScore += 2;
+      setTimeout(() => {
+        endGame();
+      }, 800);
     } else {
       resetCards();
     }
@@ -103,4 +108,20 @@ function resetCards() {
     firstClick = null;
     secondClick = null;
   }, 1000);
+}
+
+function endGame() {
+  if (totalScore === cardNumber) {
+    alert(`Parabéns, você ganhou em ${rounds} rodadas!`);
+    let restart = prompt("Deseja jogar novamente? (sim ou nao)");
+    if (restart === "sim") {
+      window.location.reload();
+      numberOfCards = prompt(
+        "Com quantas cartas quer jogar dessa vez? 4 a 14!"
+      );
+    }
+    if (restart === "nao") {
+      alert("Obrigado por jogar!");
+    }
+  }
 }
